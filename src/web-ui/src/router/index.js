@@ -12,7 +12,7 @@ import Cart from '@/public/Cart.vue'
 import Checkout from '@/public/Checkout.vue'
 import Welcome from '@/public/Welcome.vue'
 import Orders from '@/authenticated/Orders.vue'
-import Profile from '@/authenticated/Profile.vue'
+import Settings from '@/authenticated/Settings.vue'
 import Admin from '@/authenticated/Admin.vue'
 
 import { components, AmplifyEventBus } from 'aws-amplify-vue';
@@ -224,9 +224,9 @@ const router = new Router({
       meta: { requiresAuth: false}
     },
     {
-      path: '/profile',
-      name: 'Profile',
-      component: Profile,
+      path: '/settings',
+      name: 'Settings',
+      component: Settings,
       meta: { requiresAuth: true}
     },       
     {

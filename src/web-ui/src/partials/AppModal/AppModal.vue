@@ -7,6 +7,7 @@ import { mapState } from 'vuex';
 
 import DemoGuide from './DemoGuide/DemoGuide';
 import DemoWalkthrough from './DemoWalkthrough/DemoWalkthrough';
+import ShopperSelect from './ShopperSelect/ShopperSelect';
 import { Modals } from './config';
 
 export default {
@@ -21,6 +22,8 @@ export default {
             return DemoGuide;
           case Modals.DemoWalkthrough:
             return DemoWalkthrough;
+          case Modals.ShopperSelect:
+            return ShopperSelect;
           default:
             throw new Error('Invalid modal name');
         }

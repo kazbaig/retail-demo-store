@@ -94,7 +94,7 @@ import Layout from '@/components/Layout/Layout'
 const UsersRepository = RepositoryFactory.get('users')
 
 export default {
-  name: 'Profile',
+  name: 'Settings',
   components: {
     Layout,
   },

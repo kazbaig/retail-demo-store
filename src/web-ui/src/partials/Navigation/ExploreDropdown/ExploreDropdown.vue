@@ -8,7 +8,7 @@
       aria-haspopup="true"
       aria-expanded="false"
     >
-      <span class="d-none d-lg-inline">Categories <i class="fa fa-chevron-down ml-1"></i></span>
+      <span class="d-none d-lg-inline">Explore <i class="fa fa-chevron-down ml-1"></i></span>
       <i class="fa fa-bars d-inline d-lg-none"></i>
     </button>
     <div class="dropdown-menu" aria-labelledby="categories-dropdown-anchor">
@@ -33,7 +33,7 @@ import LoadingFallback from '@/components/LoadingFallback/LoadingFallback';
 import { mapState, mapGetters } from 'vuex';
 
 export default {
-  name: 'CategoriesDropdown',
+  name: 'ExploreDropdown',
   components: { LoadingFallback },
   computed: {
     ...mapState({ categories: (state) => state.categories.categories }),
