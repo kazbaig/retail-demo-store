@@ -133,7 +133,11 @@ AmplifyEventBus.$on('authState', async (state) => {
 
     AmplifyStore.commit('setUser', storeUser);
 
-    router.push({path: '/'})
+    if (newSignUp) {
+      router.push({path: '/shopper-select'});
+    } else {
+      router.push({path: '/'});
+    }
   }
   else if (state === 'profileChanged') {
     const cognitoUser = await getCognitoUser()
@@ -267,6 +271,12 @@ const router = new Router({
           }
         }
       }
+    },
+    {
+      path: '/shopper-select',
+      name: 'ShopperSelect',
+      component: Welcome,
+      meta: { requiresAuth: true },
     }
   ],
   scrollBehavior (_to, _from, savedPosition) {

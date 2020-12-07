@@ -16,7 +16,7 @@
       <button
         type="button"
         class="choose-shopper btn btn-lg btn-primary"
-        @click="openSelectShopperPage"
+        @click="chooseAShopper"
         data-toggle="tooltip"
         data-placement="bottom"
         title="This option randomly selects a shopper from the available store users in the current Retail Demo Store users dataset"
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapState } from 'vuex';
 export default {
   name: 'GetStarted',
   computed: {
@@ -44,9 +44,11 @@ export default {
     $([this.$refs.autoSelectShopper, this.$refs.chooseAShopper]).tooltip('dispose');
   },
   methods: {
-    ...mapActions(['openSelectShopperPage', 'openConfirmShopperPage']),
+    chooseAShopper() {
+      this.$emit('chooseAShopper');
+    },
     autoSelectShopper() {
-      this.openConfirmShopperPage({
+      this.$emit('autoSelectShopper', {
         selection: { ageRange: '18-24', primaryInterest: 'Accessories' },
         assignedShopper: {
           age: 30,
@@ -77,7 +79,8 @@ export default {
   width: 300px;
 }
 
-.mobile .auto-select, .mobile .choose-shopper {
+.mobile .auto-select,
+.mobile .choose-shopper {
   width: 100%;
   max-width: 350px;
 }

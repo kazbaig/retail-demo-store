@@ -1,6 +1,5 @@
 import { sections } from '@/partials/AppModal/DemoGuide/config';
 import { isMobileModalMediaQueryList, APP_MODAL_ID, Modals } from '@/partials/AppModal/config';
-import { ShopperSelectPages } from '@/partials/AppModal/ShopperSelect/config';
 
 export const modal = {
   state: () => ({
@@ -33,7 +32,7 @@ export const modal = {
           break;
 
         case Modals.ShopperSelect:
-          commit('setOpenModal', { name, currentPage: ShopperSelectPages.GetStarted });
+          commit('setOpenModal', { name });
           break;
 
         default:
@@ -61,23 +60,6 @@ export const modal = {
     nextTourPage: ({ commit, state }) => {
       if (state.openModal?.name === Modals.DemoWalkthrough)
         commit('setOpenModal', { name: Modals.DemoWalkthrough, pageIndex: state.openModal.pageIndex + 1 });
-    },
-    openGetStartedPage: ({ commit, state }) => {
-      if (state.openModal?.name === Modals.ShopperSelect)
-        commit('setOpenModal', { name: Modals.ShopperSelect, currentPage: ShopperSelectPages.GetStarted });
-    },
-    openSelectShopperPage: ({ commit, state }) => {
-      if (state.openModal?.name === Modals.ShopperSelect)
-        commit('setOpenModal', { name: Modals.ShopperSelect, currentPage: ShopperSelectPages.SelectShopper });
-    },
-    openConfirmShopperPage: ({ commit, state }, { selection, assignedShopper }) => {
-      if (state.openModal?.name === Modals.ShopperSelect)
-        commit('setOpenModal', {
-          name: Modals.ShopperSelect,
-          currentPage: ShopperSelectPages.ConfirmShopper,
-          selection,
-          assignedShopper,
-        });
     },
   },
 };

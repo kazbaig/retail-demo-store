@@ -64,8 +64,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-
 export default {
   name: 'SelectShopper',
   data() {
@@ -83,11 +81,10 @@ export default {
     $(this.$refs.learnMore).tooltip('dispose');
   },
   methods: {
-    ...mapActions(['openConfirmShopperPage']),
     onSubmit() {
       const { ageRange, primaryInterest } = this;
 
-      this.openConfirmShopperPage({
+      this.$emit('shopperSelected', {
         selection: { ageRange, primaryInterest },
         assignedShopper: {
           age: 24,

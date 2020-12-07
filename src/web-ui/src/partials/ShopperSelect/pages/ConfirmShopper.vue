@@ -64,24 +64,24 @@
     </div>
 
     <div class="button-container d-flex">
-      <button class="try-again btn btn-outline-primary" @click="openGetStartedPage">Try again</button>
+      <button class="try-again btn btn-outline-primary" @click="tryAgain">Try again</button>
       <button class="confirm btn btn-primary" @click="confirmShopper">Confirm shopper</button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
-
-import { APP_MODAL_ID } from '../../config';
+import { mapState } from 'vuex';
 
 export default {
   name: 'ConfirmShopper',
+  props: {
+    selection: { type: Object, required: true },
+    assignedShopper: { type: Object, required: true },
+  },
   computed: {
     ...mapState({
       isMobile: (state) => state.modal.isMobile,
-      selection: (state) => state.modal.openModal.selection,
-      assignedShopper: (state) => state.modal.openModal.assignedShopper,
     }),
   },
   mounted() {
@@ -93,10 +93,11 @@ export default {
     $(this.$refs.learnMore).tooltip('dispose');
   },
   methods: {
-    ...mapActions(['openGetStartedPage']),
+    tryAgain() {
+      this.$emit('tryAgain');
+    },
     confirmShopper() {
-      // eslint-disable-next-line no-undef
-      $(`#${APP_MODAL_ID}`).modal('hide');
+      this.$emit('confirm');
     },
   },
 };
@@ -183,7 +184,8 @@ export default {
   color: var(--white);
 }
 
-.mobile .try-again, .mobile .confirm {
+.mobile .try-again,
+.mobile .confirm {
   width: 100%;
   max-width: 350px;
 }

@@ -32,7 +32,7 @@
 
       <div class="dropdown-divider"></div>
 
-      <router-link to="/orders" class="dropdown-item ">
+      <router-link to="/orders" class="dropdown-item">
         <div class="dropdown-item-title">Orders</div>
         <div>View orders placed by the current shopper profile</div>
       </router-link>
@@ -100,7 +100,6 @@ export default {
   methods: {
     ...mapActions(['openModal']),
     switchShopper() {
-      console.log('action fired');
       this.openModal(Modals.ShopperSelect);
     },
     signOut() {
@@ -116,11 +115,6 @@ export default {
 </script>
 
 <style scoped>
-.login-button:hover,
-.login-button:focus {
-  /* background: var(--grey-600); */
-}
-
 .user-dropdown-button {
   border: none;
   background: none;
