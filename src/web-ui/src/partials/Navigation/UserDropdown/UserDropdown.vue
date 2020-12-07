@@ -5,7 +5,7 @@
     <button
       v-if="user"
       id="navbarDropdown"
-      :class="{'user-dropdown-button btn text-left text-lg-right': true, username: !user.persona}"
+      :class="{ 'user-dropdown-button btn text-left text-lg-right': true, username: !user.persona }"
       data-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false"
@@ -32,15 +32,16 @@
 
       <div class="dropdown-divider"></div>
 
-      <router-link to="/orders" class="dropdown-item dropdown-item-title">
-        Orders
+      <router-link to="/orders" class="dropdown-item ">
+        <div class="dropdown-item-title">Orders</div>
+        <div>View orders placed by the current shopper profile</div>
       </router-link>
 
       <div class="dropdown-divider"></div>
 
       <router-link to="/settings" class="dropdown-item">
         <div class="dropdown-item-title">Settings</div>
-        <div>Change your name and the email address where you'll receive personalized alerts and promotions.</div>
+        <div>Change your name and the email address where you'll receive personalized alerts and promotions</div>
       </router-link>
 
       <div class="dropdown-divider"></div>
@@ -115,7 +116,6 @@ export default {
 </script>
 
 <style scoped>
-
 .login-button:hover,
 .login-button:focus {
   /* background: var(--grey-600); */
