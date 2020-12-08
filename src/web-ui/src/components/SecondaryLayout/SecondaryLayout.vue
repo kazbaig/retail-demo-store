@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="banner mb-4 qpy-2">
+    <div class="banner mb-5 py-2">
       <div class="container d-flex align-items-center">
         <img src="/RDS_logo_white.svg" alt="logo" class="logo" />
         <PoweredByAWS class="powered-by-logo"></PoweredByAWS>

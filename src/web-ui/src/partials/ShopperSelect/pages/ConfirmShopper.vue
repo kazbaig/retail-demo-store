@@ -12,7 +12,14 @@
           <dd>{{ selection.ageRange }}</dd>
 
           <dt class="key">Primary interest:</dt>
-          <dd>{{ selection.primaryInterest }}</dd>
+          <dd>
+            {{
+              selection.primaryInterest
+                .split(' ')
+                .map((word) => [word[0].toUpperCase(), ...word.slice(1)].join(''))
+                .join(' ')
+            }}
+          </dd>
         </dl>
       </div>
 
@@ -41,7 +48,7 @@
                 }}
               </dd>
             </div>
-            <div class="right">
+            <div class="text-left">
               <a
                 href="#"
                 type="button"
@@ -67,7 +74,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { Credentials } from '@aws-amplify/core';
+import { mapState, mapActions } from 'vuex';
+
+import { RepositoryFactory } from '@/repositories/RepositoryFactory';
+
+const UsersRepository = RepositoryFactory.get('users');
 
 export default {
   name: 'ConfirmShopper',
@@ -105,10 +117,16 @@ export default {
     $(this.$refs.learnMore).tooltip('dispose');
   },
   methods: {
+    ...mapActions(['setUser']),
     tryAgain() {
       this.$emit('tryAgain');
     },
-    confirmShopper() {
+    async confirmShopper() {
+      const { identityId } = await Credentials.get();
+      await UsersRepository.claimUser(identityId, this.assignedShopper.id);
+
+      this.setUser(this.assignedShopper);
+
       this.$emit('confirm');
     },
   },

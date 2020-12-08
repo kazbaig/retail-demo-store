@@ -59,5 +59,9 @@ export default {
             throw "user required"
         return connection.put(`${resource}/id/${user.id}`, user)
     },
+    claimUser(identityId, userId) {
+
+        return connection.post(`${resource}/claim/`, `identityId=${identityId}&userId=${userId}`, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
+    },
 
 }
