@@ -82,6 +82,11 @@ Auth.currentUserInfo()
   .then(user => logger.debug(user))
   .catch(err => logger.debug(err))
 
+
+// eslint-disable-next-line no-undef
+$('[data-toggle="tooltip"]').tooltip();
+
+
 new Vue({  
   el: '#app',
   router: router,
