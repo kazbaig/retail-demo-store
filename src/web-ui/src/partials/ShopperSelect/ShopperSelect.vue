@@ -1,14 +1,16 @@
 <template>
-  <component
-    :is="currentPageComponent"
-    @autoSelectShopper="onAutoSelectShopper"
-    @chooseAShopper="onChooseAShopper"
-    @shopperSelected="onShopperSelected"
-    @tryAgain="onTryAgain"
-    @confirm="onConfirm"
-    :selection="pageData.meta && pageData.meta.selection"
-    :assignedShopper="pageData.meta && pageData.meta.assignedShopper"
-  ></component>
+  <div>
+    <component
+      :is="currentPageComponent"
+      @autoSelectShopper="onAutoSelectShopper"
+      @chooseAShopper="onChooseAShopper"
+      @shopperSelected="onShopperSelected"
+      @tryAgain="onTryAgain"
+      @confirm="onConfirm"
+      :selection="pageData.meta && pageData.meta.selection"
+      :assignedShopper="pageData.meta && pageData.meta.assignedShopper"
+    ></component>
+  </div>
 </template>
 
 <script>

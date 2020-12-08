@@ -80,9 +80,7 @@ export default {
   max-width: 1200px;
   height: 90%;
 }
-</style>
 
-<style>
 .modal-body {
   height: 800px;
 }

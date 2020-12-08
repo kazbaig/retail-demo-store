@@ -14,6 +14,7 @@ import Welcome from '@/public/Welcome.vue'
 import Orders from '@/authenticated/Orders.vue'
 import Settings from '@/authenticated/Settings.vue'
 import Admin from '@/authenticated/Admin.vue'
+import ShopperSelectPage from '@/authenticated/ShopperSelectPage'
 
 import { components, AmplifyEventBus } from 'aws-amplify-vue';
 import { Auth, Logger, I18n, Analytics, Interactions } from 'aws-amplify';
@@ -275,7 +276,7 @@ const router = new Router({
     {
       path: '/shopper-select',
       name: 'ShopperSelect',
-      component: Welcome,
+      component: ShopperSelectPage,
       meta: { requiresAuth: true },
     }
   ],

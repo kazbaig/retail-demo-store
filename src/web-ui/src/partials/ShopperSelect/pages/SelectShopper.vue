@@ -28,14 +28,14 @@
             <label for="primary-interest" class="label mr-3 mb-0">2</label>
             <select class="form-control" id="primary-interest" v-model="primaryInterest">
               <option value="">Select primary interest</option>
-              <option>Accessories</option>
-              <option>Apparel</option>
-              <option>Beauty</option>
-              <option>Electronics</option>
-              <option>Footwear</option>
-              <option>Housewares</option>
-              <option>Jewelry</option>
-              <option>Outdoors</option>
+              <option value="footwear">Footwear</option>
+              <option value="housewares">Housewares</option>
+              <option value="apparel">Apparel</option>
+              <option value="jewelry">Jewelry</option>
+              <option value="beauty">Beauty</option>
+              <option value="electronics">Electronics</option>
+              <option value="accessories">Accessories</option>
+              <option value="outdoors">Outdoors</option>
             </select>
           </div>
 
@@ -54,7 +54,7 @@
         </div>
 
         <div class="text-center">
-          <button class="submit btn btn-primary" type="submit" :disabled="!(ageRange && primaryInterest)">
+          <button class="submit btn btn-primary btn-lg" type="submit" :disabled="!(ageRange && primaryInterest)">
             Submit
           </button>
         </div>
@@ -64,12 +64,17 @@
 </template>
 
 <script>
+import { RepositoryFactory } from '@/repositories/RepositoryFactory';
+
+const UsersRepository = RepositoryFactory.get('users');
+
 export default {
   name: 'SelectShopper',
   data() {
     return {
       ageRange: '',
       primaryInterest: '',
+      isFetchingShopper: false,
     };
   },
   mounted() {
@@ -81,18 +86,16 @@ export default {
     $(this.$refs.learnMore).tooltip('dispose');
   },
   methods: {
-    onSubmit() {
-      const { ageRange, primaryInterest } = this;
+    async onSubmit() {
+      const { primaryInterest, ageRange } = this;
+
+      this.isFetchingShopper = true;
+
+      const { data } = await UsersRepository.getWithFilter({ primaryInterest, ageRange });
 
       this.$emit('shopperSelected', {
-        selection: { ageRange, primaryInterest },
-        assignedShopper: {
-          age: 24,
-          gender: 'Male',
-          name: 'Joe Doe',
-          primaryInterest: 'Books',
-          secondaryInterests: ['Software', 'Videogames'],
-        },
+        selection: { primaryInterest, ageRange },
+        assignedShopper: data,
       });
     },
   },

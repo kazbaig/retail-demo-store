@@ -30,6 +30,11 @@
 
 <script>
 import { mapState } from 'vuex';
+
+import { RepositoryFactory } from '@/repositories/RepositoryFactory';
+
+const UsersRepository = RepositoryFactory.get('users');
+
 export default {
   name: 'GetStarted',
   computed: {
@@ -47,16 +52,11 @@ export default {
     chooseAShopper() {
       this.$emit('chooseAShopper');
     },
-    autoSelectShopper() {
+    async autoSelectShopper() {
+      const { data } = await UsersRepository.getRandomUser();
+
       this.$emit('autoSelectShopper', {
-        selection: { ageRange: '18-24', primaryInterest: 'Accessories' },
-        assignedShopper: {
-          age: 30,
-          gender: 'Female',
-          name: 'Jane Doe',
-          primaryInterest: 'Books',
-          secondaryInterests: ['Software', 'Videogames'],
-        },
+        assignedShopper: data,
       });
     },
   },

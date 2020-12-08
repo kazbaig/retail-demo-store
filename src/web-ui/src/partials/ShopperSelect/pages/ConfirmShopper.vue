@@ -3,7 +3,7 @@
     <h1 class="confirm-shopper mb-4 text-center">Confirm shopper</h1>
 
     <div class="flex-container mb-5 d-flex">
-      <div class="your-selections px-4 py-3">
+      <div v-if="selection" class="your-selections px-4 py-3">
         <h2 class="your-selections-heading mb-4 text-center">
           Your selections
         </h2>
@@ -21,26 +21,22 @@
           Assigned shopper
         </h2>
 
-        <div class="mb-3">
-          {{ assignedShopper.name }}. {{ assignedShopper.gender }}. {{ assignedShopper.age }} years
-        </div>
+        <div class="mb-3">{{ profile.name }}. {{ profile.gender }}. {{ profile.age }} years</div>
 
         <dl>
           <div class="mb-2 d-flex flex-wrap">
             <dt class="mr-1">Primary interest:</dt>
-            <dd class="mb-0">{{ assignedShopper.primaryInterest }}</dd>
+            <dd class="mb-0">{{ profile.primaryInterest }}</dd>
           </div>
 
           <div>
             <div class="d-flex flex-wrap">
-              <dt class="mr-1">Secondary interest{{ assignedShopper.secondaryInterests.length > 1 ? 's' : '' }}:</dt>
+              <dt class="mr-1">Secondary interest{{ profile.secondaryInterests.length > 1 ? 's' : '' }}:</dt>
               <dd class="mb-0">
                 {{
                   [
-                    assignedShopper.secondaryInterests
-                      .slice(0, assignedShopper.secondaryInterests.length - 1)
-                      .join(', '),
-                    assignedShopper.secondaryInterests[assignedShopper.secondaryInterests.length - 1],
+                    profile.secondaryInterests.slice(0, profile.secondaryInterests.length - 1).join(', '),
+                    profile.secondaryInterests[profile.secondaryInterests.length - 1],
                   ].join(' and ')
                 }}
               </dd>
@@ -76,13 +72,29 @@ import { mapState } from 'vuex';
 export default {
   name: 'ConfirmShopper',
   props: {
-    selection: { type: Object, required: true },
+    selection: { type: Object, required: false },
     assignedShopper: { type: Object, required: true },
   },
   computed: {
     ...mapState({
       isMobile: (state) => state.modal.isMobile,
     }),
+    profile() {
+      const interests = this.assignedShopper.persona.split('_').map((pref) =>
+        pref
+          .split(' ')
+          .map((word) => [word[0].toUpperCase(), ...word.slice(1)].join(''))
+          .join(' '),
+      );
+
+      return {
+        age: this.assignedShopper.age,
+        gender: this.assignedShopper.gender === 'M' ? 'Male' : 'Female',
+        name: `${this.assignedShopper.first_name} ${this.assignedShopper.last_name}`,
+        primaryInterest: interests[0],
+        secondaryInterests: interests.slice(1),
+      };
+    },
   },
   mounted() {
     // eslint-disable-next-line no-undef
