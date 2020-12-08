@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'layout--has-nav': showNav, 'layout--has-demo-guide': showDemoGuide}">
+  <div :class="{ 'layout--has-nav': showNav, 'layout--has-demo-guide': showDemoGuide }">
     <Navigation v-if="showNav"></Navigation>
 
     <LoadingFallback v-if="isLoading" class="container mb-4"></LoadingFallback>
@@ -71,6 +71,9 @@ export default {
         document.body.style.setProperty('--background-color', newBg);
       },
     },
+  },
+  beforeDestroy() {
+    document.body.style.removeProperty('--background-color');
   },
   components: {
     Navigation,
