@@ -23,10 +23,10 @@ export default {
         return connection.get(`${resource}/all?offset=${offset}&count=${count}`)
     },
     getWithFilter({primaryInterest, ageRange}) {
-        return connection.get(`${resource}/filter?primaryPersona=${primaryInterest}&ageRange=${ageRange}`)
+        return connection.get(`${resource}/filter/?primaryPersona=${primaryInterest}&ageRange=${ageRange}`)
     },
     getRandomUser() {
-        return connection.get(`${resource}/getRandomUser`)
+        return connection.get(`${resource}/getRandomUser/`)
     },
     getUserByID(userID) {
         if (!userID || userID.length == 0)
