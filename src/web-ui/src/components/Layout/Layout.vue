@@ -34,6 +34,15 @@ import DemoGuideButton from '@/partials/DemoGuideButton/DemoGuideButton';
 
 export default {
   name: 'Layout',
+  components: {
+    Navigation,
+    LoadingFallback,
+    PreviousPageLink,
+    TextAlerts,
+    Footer,
+    AppModal,
+    DemoGuideButton,
+  },
   props: {
     showNav: {
       type: Boolean,
@@ -64,25 +73,23 @@ export default {
       required: false,
     },
   },
+  methods: {
+    updateBackgroundColor(color) {
+      document.body.style.setProperty('--background-color', color);
+    },
+  },
+  mounted() {
+    this.updateBackgroundColor(this.backgroundColor);
+  },
   watch: {
     backgroundColor: {
-      immediate: true,
       handler(newBg) {
-        document.body.style.setProperty('--background-color', newBg);
+        this.updateBackgroundColor(newBg);
       },
     },
   },
   beforeDestroy() {
     document.body.style.removeProperty('--background-color');
-  },
-  components: {
-    Navigation,
-    LoadingFallback,
-    PreviousPageLink,
-    TextAlerts,
-    Footer,
-    AppModal,
-    DemoGuideButton,
   },
 };
 </script>
