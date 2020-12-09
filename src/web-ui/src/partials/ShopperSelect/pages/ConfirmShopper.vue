@@ -76,8 +76,10 @@
 <script>
 import { Credentials } from '@aws-amplify/core';
 import { mapState, mapActions } from 'vuex';
+import { AmplifyEventBus } from 'aws-amplify-vue';
 
 import { RepositoryFactory } from '@/repositories/RepositoryFactory';
+import { AnalyticsHandler } from '@/analytics/AnalyticsHandler';
 
 const UsersRepository = RepositoryFactory.get('users');
 
@@ -126,6 +128,10 @@ export default {
       await UsersRepository.claimUser(identityId, this.assignedShopper.id);
 
       this.setUser(this.assignedShopper);
+
+      AnalyticsHandler.identify(this.user);
+
+      AmplifyEventBus.$emit('authState', 'profileChanged');
 
       this.$emit('confirm');
     },
