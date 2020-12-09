@@ -12,23 +12,27 @@
       <i class="fa fa-bars d-inline d-lg-none"></i>
     </button>
     <div class="dropdown-menu" aria-labelledby="categories-dropdown-anchor">
-      <LoadingFallback v-if="!categories"></LoadingFallback>
-      <router-link
-        v-else
-        v-for="(category, i) in categories"
-        :key="category.id"
-        class="dropdown-item"
-        :to="`/category/${category.name}`"
-        >{{ formattedCategories[i] }}</router-link
-      >
-      <hr/>
+      <div v-if="!categories" class="text-center">
+        <LoadingFallback></LoadingFallback>
+      </div>
+      <template v-else>
+        <router-link class="dropdown-item" :to="`/category/featured`">Featured</router-link>
+        <router-link
+          v-for="(category, i) in categories"
+          :key="category.id"
+          class="dropdown-item"
+          :to="`/category/${category.name}`"
+          >{{ formattedCategories[i] }}</router-link
+        >
+      </template>
+
+      <hr />
       <router-link class="dropdown-item" :to="`/live`">Live Streams</router-link>
     </div>
   </div>
 </template>
 
 <script>
-// import { categories } from '@/mixins/categories';
 import LoadingFallback from '@/components/LoadingFallback/LoadingFallback';
 import { mapState, mapGetters } from 'vuex';
 
