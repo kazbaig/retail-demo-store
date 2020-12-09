@@ -32,7 +32,7 @@ export default {
   components: { DemoGuideBadge },
   data() {
     return {
-      isEnabled: process.env.VUE_APP_ENABLE_TEXT_ALERTS === 'true',
+      isEnabled: true,
       phoneNumber: '',
       demoGuideBadgeArticle: Articles.SMS_MESSAGING,
     };

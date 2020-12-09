@@ -69,7 +69,7 @@ export default {
   },
   data() {
     return {
-      pinpointEnabled: process.env.VUE_APP_PINPOINT_APP_ID,
+      pinpointEnabled: true,
       demoGuideBadgeArticle: Articles.PERSONALIZED_EMAILS,
     };
   },
