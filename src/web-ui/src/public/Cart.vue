@@ -53,12 +53,15 @@
 import { mapState, mapGetters } from 'vuex';
 
 import { AnalyticsHandler } from '@/analytics/AnalyticsHandler';
+import { RepositoryFactory } from '@/repositories/RepositoryFactory';
 
 import CartItem from './components/CartItem.vue';
 import Layout from '@/components/Layout/Layout';
 import DemoGuideBadge from '@/components/DemoGuideBadge/DemoGuideBadge';
 
 import { Articles } from '@/partials/AppModal/DemoGuide/config';
+
+const ProductsRepository = RepositoryFactory.get('products');
 
 export default {
   name: 'Cart',
@@ -96,8 +99,9 @@ export default {
   methods: {
     async triggerAbandonedCartEmail() {
       if (this.cart && this.cart.items.length > 0) {
-        const cartItem = await this.getProductByID(this.cart.items[0].product_id);
-        AnalyticsHandler.recordAbanonedCartEvent(this.user, this.cart, cartItem);
+        const { data: cartItem } = await ProductsRepository.getProduct(this.cart.items[0].product_id);
+
+        AnalyticsHandler.recordAbandonedCartEvent(this.user, this.cart, cartItem);
       } else {
         console.error('No items to export');
       }

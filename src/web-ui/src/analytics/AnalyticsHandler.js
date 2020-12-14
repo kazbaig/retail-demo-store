@@ -247,7 +247,7 @@ export const AnalyticsHandler = {
         }
     },
 
-    recordAbanonedCartEvent(user,cart,cartProduct) {
+    recordAbandonedCartEvent(user,cart,cartProduct) {
         if (user && cart && cartProduct) {
             AmplifyAnalytics.record({
                 name: '_session.stop',
@@ -262,7 +262,7 @@ export const AnalyticsHandler = {
                     WebsiteCartURL : [process.env.VUE_APP_WEB_ROOT_URL + '#/cart'],
                     WebsiteLogoImageURL : [process.env.VUE_APP_WEB_ROOT_URL + '/RDS_logo_white.svg'],
                     WebsitePinpointImageURL : [process.env.VUE_APP_WEB_ROOT_URL + '/icon_Pinpoint_orange.svg'],
-                    ShoppingCartItemImageURL:  [process.env.VUE_APP_IMAGE_ROOT_URL + cartProduct.category + '/' + cartProduct.image],
+                    ShoppingCartItemImageURL:  [cartProduct.image],
                     ShoppingCartItemTitle :  [cartProduct.name],
                     ShoppingCartItemURL : [cartProduct.url],
                 },
