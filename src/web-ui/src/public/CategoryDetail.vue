@@ -4,7 +4,7 @@
 
       <!-- Product List -->
       <div class="container mt-3" v-if="products.length">
-        <h2 class="text-left">{{ this.display | capitalize }}</h2>
+        <h2 class="text-left">{{ this.display | capitalize }} <DemoGuideBadge :article="demoGuideBadgeArticle"></DemoGuideBadge></h2>
         <div v-if="explain_recommended" class="text-muted text-left">
           <small><em><i v-if="active_experiment" class="fa fa-balance-scale"></i><i v-if="personalized" class="fa fa-user-check"></i> {{ explain_recommended }}</em></small>
         </div>
@@ -78,6 +78,8 @@ import { AnalyticsHandler } from '@/analytics/AnalyticsHandler'
 
 import Product from './components/Product.vue'
 import Layout from '@/components/Layout/Layout'
+import DemoGuideBadge from '@/components/DemoGuideBadge/DemoGuideBadge';
+import { Articles } from '@/partials/AppModal/DemoGuide/config';
 
 const ProductsRepository = RepositoryFactory.get('products')
 const RecommendationsRepository = RepositoryFactory.get('recommendations')
@@ -90,10 +92,12 @@ export default {
   components: {
     Product,
     Layout,
+    DemoGuideBadge,
   },
   data() {
     return {
       feature: ExperimentFeature,
+      demoGuideBadgeArticle: Articles.USER_PERSONALIZATION,
       products: [],
       errors: [],
       display: '',
