@@ -46,7 +46,7 @@ export default {
   components: { DemoGuideBadge },
   data() {
     return {
-      isEnabled: process.env.VUE_APP_ENABLE_TEXT_ALERTS === 'true',
+      isEnabled: true,
       phoneNumber: '',
       hasConsented: false,
       demoGuideBadgeArticle: Articles.SMS_MESSAGING,
