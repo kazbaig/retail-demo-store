@@ -97,7 +97,7 @@ export default {
   data() {
     return {
       feature: ExperimentFeature,
-      demoGuideBadgeArticle: Articles.USER_PERSONALIZATION,
+      demoGuideBadgeArticle: Articles.PERSONALIZED_RANKING,
       products: [],
       errors: [],
       display: '',
