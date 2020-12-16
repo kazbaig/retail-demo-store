@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div role="progressbar" :aria-valuenow="progress" aria-valuemin="0" aria-valuemax="100">
     <svg :height="radius * 2" :width="radius * 2">
       <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
         {{ complete ? 'Complete!' : 'Processing...' }}
