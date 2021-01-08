@@ -196,7 +196,7 @@ export default {
 
 <style scoped>
 .recommendations-heading {
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .recommendation-explanation {
@@ -210,9 +210,12 @@ export default {
 }
 
 @media (min-width: 768px) {
-.user-recommendations {
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-}
+  .recommendations-heading {
+    font-size: 1.4rem;
+  }
 
+  .user-recommendations {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
 }
 </style>
