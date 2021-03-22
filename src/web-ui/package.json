@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "preinstall": "npx npm-force-resolutions",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
@@ -37,14 +36,6 @@
     "lodash": "^4.17.19",
     "vue-template-compiler": "^2.6.11",
     "webpack-bundle-analyzer": "^3.8.0"
-  },
-  "resolutions": {
-    "acorn": "^6.4.1",
-    "elliptic": "^6.5.3",
-    "highlight.js": ">=10.4.1",
-    "kind-of": "^6.0.3",
-    "minimist": "^1.2.5",
-    "selfsigned": "^1.10.8"
   },
   "eslintConfig": {
     "root": true,
